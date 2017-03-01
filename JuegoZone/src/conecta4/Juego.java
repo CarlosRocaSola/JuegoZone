@@ -178,5 +178,74 @@ public class Juego {
                      m_jugando = false;
                  }
              }
-             else //Si la ficha se coloca incorrectamente el juego termina.
+           //Si la ficha se coloca incorrectamente el juego termina.
+             else {
+            	 m_mensaje = 4;
+            	 m_jugando = false;
+             }
+        }
+        
+    }
+public int jugadaMaquina(JugadorMaquina jugador){
+    	
+    	int columna;
+    	int resultado = 0;
+    	
+    	if(m_turno == jugador.m_jugador){
+    		jugador.isDone(false);
+    		jugador.asignarTablero(m_teblero);
+    		
+    		Thread myThread = new Thread(jugador);
+    		myThread.start();
+    		long timeStart = System.currentTimeMillis();
+    		long elapsed = 0;
+    		
+    		while (!jugador.isDone() && (elapsed < m_tiempoMaximo)){
+    			elapsed = System.currentTimeMillis() - timeStart;
+    		}
+    		columna = jugador.m_columna;
+    		myThread = null;
+    		resultado = m_tablero.ponerFicha(columna, jugador.m_jugador);
+    		if(resultado == 0){
+    			if(m_tablero.cuatroEnRaya()!=0){
+    				m_mensaje = 2;
+    				m_jugando = false;
+    			}
+    			if(m_tablero.tableroLleno()){
+    				m_mensaje = 3;
+    				m_jugando = false;
+    			}
+    		}
+    		else{
+    			m_mensaje = 4;
+    			m_jugando = false;
+    		}
+    	}
+    	
+    	return resultado;
+    	
+    }
+    
+    public void cambiaTurno(){
+    	
+    	if(m_turno == 1)
+    		m_turno = 2;
+    	else
+    		m_turno = 1;
+    	m_mensaje = 1;   	
+    		
+    }
+    
+    public void reiniciarJuego(){
+    	m_tablero.limpiarTablero();
+    	m_turno = 1;
+    	m_mensaje = 0;
+    	m_jugando = false;
+    }
+ 
+    
+    
+}
+    
+    
                  
