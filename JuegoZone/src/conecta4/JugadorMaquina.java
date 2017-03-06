@@ -521,6 +521,10 @@ class tableroAux{
         //Casilla por la que busca
         int casilla;
         //Jugador que a hecho el 4 en raya
+        
+        
+        
+        
         int ganador = 0;
 
         //Indica que ha encontrado 4 en raya
@@ -530,4 +534,80 @@ class tableroAux{
         int j = 0;
 
         while ((!fin) && (i < this.filas))
+        {
+        	j=0;
+        	while ((!fin) && (i < this.columnas))
+        	{
+        		//Para cada casilla del tablero
+        		casilla = this.matrix[i][j];
+        		//Si la casilla no esta vacia comprueba si pertenece a un 4 en raya
+        	  	if(casilla != 0)
+        	  	{
+        	  		//Realiza una busqueda en horizontal
+        	  		if(j+3 < this.columnas)
+        	  			if ((this.matrix[i][j+1]==casilla) &&)
+        	  			(this.matriz[i][j+2]==casilla) && (this.matrix[i][j+3]==casilla))
+        	  			{
+        	  				ganador = casilla;
+        	  				fin = true;
+        	  			}
+        	  			
+        	  		//Realiza una busqueda en vertical
+        	  		if(i+3 < this.filas)
+        	  			if((this.matrix[i+1][j] == casilla) &&
+        	  			(this.matrix[i+2][j] == casilla) && (this.matrix[i+3][j] == casilla))
+    	  				{
+    	  					ganador = casilla;
+    	  					fin = true;
+    	  				}
+        	  		
+        	  		//Realiza una busqueda diagonal, Debe buscar en las 2 diagonales
+        	  		//a partir de una casilla
+        	  		if(i-3 >= 0)
+        	  		{
+        	  			//Realiza una busqueda en al primera diagonal
+        	  			if(j-3 >= 0)
+        	  			{
+        	  				if((this.matrix[i+1][j-1] == casilla) &&
+        	  				(this.matrix[i+2][j-2] == casilla) &&
+        	  				(this.matrix[i+3][j-3] == casilla))
+        	  				{
+    	  						ganador = casilla;
+    	  						fin = true;
+        	  				}
+        	  			}
+        	  			
+        	  		//Realiza una busqueda en la segunda diagonal
+        	  			if(j+3 < this.columnas)
+        	  			{
+        	  				if((this.matrix[i+1][j+1] == casilla) &&
+                	  		(this.matrix[i+2][j+2] == casilla) &&
+                	  		(this.matrix[i+3][j+3] == casilla))
+    	  					{
+	  							ganador = casilla;
+	  							fin = true;
+    	  					}
+        	  			}
+        	  			
+        	  		}
+        	  	}
+        	  	j++;
+        	}
+        	i++;
+        }
+        return ganador;
+    }
         
+     public void printTablero(){
+    	 for(int i=0; i < this.filas; ++i){
+    		 for(int j=0; j < this.columnas; ++j){
+    			 System.out.print(this.matrix[i][j]);
+    		 }
+    		 System.out.println("");
+    	 }
+    	 System.out.println("");
+     }
+     
+     
+     
+}
