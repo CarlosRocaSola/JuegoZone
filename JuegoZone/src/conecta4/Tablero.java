@@ -199,7 +199,7 @@ public class Tablero {
                     	//Realiza una búsqueda en la segunda diagonal
                     	if(j+3 < m_numColumnas)
                     	{
-                    		if((m_tablero[i+1][j+1]==casilla))&&
+                    		if((m_tablero[i+1][j+1]==casilla) &&
                     		(m_tablero[i+2][j+2]==casilla) && (m_tablero[i+3][j+3]==casilla))
                     		{
                     			ganador = casilla;
