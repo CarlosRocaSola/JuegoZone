@@ -1,7 +1,7 @@
 
 // CoinBox.java -----------------------------------------------------
 
-package mario;
+package ScrollGame;
 
 
 import java.applet.*;
@@ -77,7 +77,7 @@ public class CoinBox extends WorldObject {
 	public void act() {
 		if (moving) {
 			move();
-			speed.setY(speed.getAccurateY()-((Main)stage).getGravity());
+			speed.setY(speed.getAccurateY()-((PlatformGame)stage).getGravity());
 			if (y >= initY) {
 				speed.setY(0);
 				y = initY;
