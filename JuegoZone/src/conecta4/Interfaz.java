@@ -322,4 +322,102 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
+    /**
+     * ©param args the command line arguments
+    */
+    public static void main(String args[]){
+    java.awt.EventQueue.invokeLater(new Runnable(){
+    public void run() {
+    //new Interfaz(Juego juego).setVisible(true);
+    }
+    	});
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonHH;
+    private javax.swing.JButton jButtonHM;
+    private javax.swing.JButton jButtonMM;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
+    // End of variables declaration//GEN-END:variables
+
+    //Dibuja el tablero de juego.
+    @Override
+    @SuppressWarnings("static-access")
+    public void paint(Graphics g)
+    {
+    float alturaTablero, anchuraTablero;
+    float anchoCasilla, altoCasilla, margenAncho, margenAlto;
+    int x , y;
+
+    //Calcula el tamaño que tendrá el tablero. Le resta los márgenes izquierdo y superior respectivamente.
+    anchuraTablero = jPanel1.getSize().width-40;
+    alturaTablero = jPanel1.getSize().height-70;
+
+    //Como estamos sobreescribiendo la función llamamos a la función padre.
+    super.paint(g);
+    g = jPanel1.getGraphics();
+
+    //Dibuja el tablero como un rectángulo azul.
+    g.setColor(Color.BLUE);
+    g.fillRect(20,50,((int)anchuraTablero),((int)alturaTablero));
+
+
+    //Una vez dibujado el tablero, crea cada una de las casillas del tablero.
+
+    //Calcula el tamaño que ocupará cada casilla a partir del tamaño del tablero.
+    anchoCasilla = (anchuraTablero)/m_nuevoJuego.m_tablero.numColumnas();
+    altoCasilla = (alturaTablero)/m_nuevoJuego.m_tablero.numFilas();
+    margenAncho = (float) (0.2 * anchoCasilla);
+    margenAlto = (float) (0.1 * altoCasilla);
+
+    //Dibuja cada una de las casillas
+    for(int i=0; i<m_nuevoJuego.m_tablero.numColumnas();i++)
+    		for(int j=0; j<m_nuevoJuego.m_tablero.numFilas();j++)
+    		{
+
+    //S1 la casilla pertenece al jugador 1, la dibuja de color rojo
+    			if(m_nuevoJuego.m_tablero.obtenerCasilla(j, i) == 1)
+    				g.setColor(Color.RED);
+    			else //Si la casilla pertenece al jugador 2, la dibuja de color amarillo
+    			if(m_nuevoJuego.m_tablero.obtenerCasilla(j, i) == 2)
+    				g.setColor(Color.YELLOW);
+    			else //Si la casilla está vacía, la dibuja de co1or negro
+    				g.setColor(Color.darkGray);
+
+    			//Calcula la posición en la que debe dibujar la casilla
+    			x = (int) (i * anchoCasilla+20);
+    			y = (int) (alturaTablero) - (int) (j * altoCasilla);
+
+    			//Dibuja la casilla
+    			g.fillOval((int)(x+margenAncho),(int)(y+margenAlto), (int) (0.8*altoCasilla) , (int)  (0.8*altoCasilla));
+    		}
+    	EscribeMensaje();
+    }
+
+    public void EscribeMensaje()
+    {
+    	switch (m_nuevoJuego.m_mensaje){
+    		case 0: jLabel1.setText("Selecciona un modo de juego");
+    			break;
+    		case 1: jLabel1.setText("Turno del jugador "+m_nuevoJuego.getTurno()+".");
+    			break;
+    		case 2: jLabel1.setText("Ha ganado el jugador "+m_nuevoJuego.getTurno()+".");
+    			break;
+    		case 3: jLabel1.setText("Empate. Tablero lleno.");
+    			break;
+    		case 4: jLabel1.setText("El jugador "+m_nuevoJuego.getTurno()+
+    " ha colocado una ficha incorrectamente.");
+    			break;
+    		default: jLabel1.setText(" ");
+    	
+    			break;
+    		}
+    }
+}
+
+
   
