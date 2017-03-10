@@ -199,7 +199,7 @@ public class Juego {
 		if(m_turno == jugador.m_jugador){
 			//se duplica el tablero para que no se pueda modificar desde la clase JugadorMaquina
 			jugador.isDone(false);
-			jugador.asignarTablero(m_teblero);
+			jugador.asignarTablero(m_tablero);
 			//se crea e inicia el thread para que el jugador maquina calcule la jugada 
 			Thread myThread = new Thread(jugador);
 			myThread.start();
