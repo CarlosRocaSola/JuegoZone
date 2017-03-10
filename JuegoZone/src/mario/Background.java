@@ -66,5 +66,87 @@ public class Background {
 	private void setImage(String imgName) {
 		setImage(stage.getImagesLoader().getImage(imgName));
 	}
-
 	
+	private void setImage(BufferedImage img){
+		if (width ==IMG_DIMENSIONS) {
+			with=img.getEidth();
+		}if (height == IMG.DIMENSIONS) {
+			height = img.getHeight();
+			if (img.getWidth() != ||
+			  img.getHeight() != height) {
+				this.img=stage.getImagesEffects().
+						returnRescaleImg(img, width,height);
+			} else {
+				this.img=img;
+			}
+		}
+	}
+	//  end of SET methods-------------------------------------------
+	
+	// GET methods---------------------------------------------------
+	public double getX(){
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	//end of GET methods----------------------------------------------
+
+	public void setSpeedX(double toMove) {
+		speedS=toMove*speedFactor;
+	}
+	
+	public void move() {
+		if (defaultSpeed !=0) {
+			x+= defaultSpeed;
+		}
+		x+=speedX;
+		//Pasamos la 'y' como positiva
+		//debido a que en pantalla la 'y'
+		//aumenta al bajar y no al subir
+		//como ocurre con los vectores
+		//matemáticos.
+		y+=speedY;
+	}
+	public void act() {
+		move();
+	}
+	public void paint(Graphics g) {
+		int x = (int)x%width;
+		int y = (int)y%height;
+		int screenWidth =map.getDisplayableWidth();
+		if (x!=0) {
+			if (x>0) {
+				x-= width;
+			}
+			paintCap(g, X, Y);
+		}
+		for (int i=x; i<screenWidth; i+=width){
+			if (i+width < screenWidth) {
+				paintImg(g, i,Y);
+			} else {
+				paintQueue(g, i,Y);
+			}
+		}
+	}
+	
+	private void paintImg(Graphics g, int x2, int y2) {
+		stage.GetImagesEffects().paintAlphaImg(
+				g, img, x2, y2, width, height, alpha);
+	}
+	
+	private void paintQueue(Graphics g, int x, int y) {
+		stage.getImagesEffects().paintAlphaImg(
+				g, img, x, y, map.getDisplayableWidth(),
+				map.getDisplayableHeight(), 0, 0,
+				map.getDisplayableWidth()-x,
+				map.getDisplayableHeight()-y, alpha);
+	}
+	
+	private void paintCap(Graphics g, int x, int y) {
+		stage.getImagesEffects().paintAphaImg(
+				g, img, 0, 0, x, map.getDisplayabeHeight(),
+				x, height, 0 height, alpha);
+	}
+ }
