@@ -184,7 +184,7 @@ public class Juego {
 				m_jugando = false;
 			}
 		}
-
+		return resultado;
 	}
 	/**
 	 * crea un thread donde se ejecutará JugadorMaquina para que calcule la jugada
