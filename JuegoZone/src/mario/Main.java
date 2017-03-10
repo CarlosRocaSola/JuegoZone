@@ -1,4 +1,3 @@
-
 // PlatformGame.java -------------------------------------------------
 
 package mario;
@@ -74,15 +73,15 @@ public class Main extends Stage {
 		map.addPlayer(m);
 	}
 	
-	public synchronized void updatesStage(){
+	public synchronized void updateStage(){
 		map.act();
 		if (!gameOver && Coin.N_COINS == Coin.COINS_CATCHED){
 		gameOver ();
 		final Stage s =this;
-		new Thrad(new Runnable(){
+		new Thread(new Runnable(){
 		public void run(){
 		try {
-		Thread.slepp(2000);
+		Thread.sleep(2000);
 		} catch (Exception e){}
 		Coin.N_COINS = 0;
 		gameOver=false;
@@ -95,13 +94,13 @@ public class Main extends Stage {
 	}   
 	public synchronized void renderStage(Graphics g){
 		g.setColor(Color.BLACK);
-		g.fillRect(0,0,WIDTH,HEIGHY);
+		g.fillRect(0,0,WIDTH,HEIGHT);
 		map.paint(g);
 		// Indicamos que se ha llegado al final
 		// del juego si es necesario.
-		if (gameOver)}
+		if (gameOver){
 	    Graphics2D g2= (Graphics2D)g;
-	    g2.setColor (Color.WHITE);
+	    g2.setColor(Color.WHITE);
 	    g2.setRenderingHint(
 	    		RenderingHints.KEY_TEXT_ANTIALIASING,
 	    		RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
@@ -139,7 +138,7 @@ public void mousePressed(MouseEvent e){
 public float getGravity(){
 return gravity;
 }
-public Map getCurrent;ap(){
+public Map getCurrentmap(){
 	return map;
 }
 	
@@ -150,5 +149,5 @@ public static void main(String[] args){
 }
 }
 // fin de la clase
-}
+
 		
