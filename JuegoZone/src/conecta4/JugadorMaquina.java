@@ -546,7 +546,7 @@ class tableroAux{
         	  		//Realiza una busqueda en horizontal
         	  		if(j+3 < this.columnas)
         	  			if ((this.matrix[i][j+1]==casilla) &&
-        	  			(this.matriz[i][j+2]==casilla) && (this.matrix[i][j+3]==casilla))
+        	  			(this.matrix[i][j+2]==casilla) && (this.matrix[i][j+3]==casilla))
         	  			{
         	  				ganador = casilla;
         	  				fin = true;
