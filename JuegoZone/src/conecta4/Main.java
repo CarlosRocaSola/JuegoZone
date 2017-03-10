@@ -22,7 +22,7 @@ public class Main {
 	 * @param args the command line arguments
 	 * 
 	 */
-	 public static void main (Strings[args]){
+	 public static void main (String []args){
 		//crea el juego
 		 Juego m_juego=new Juego(m_columnas,m_filas,m_tiempoMaximo,0,1);
 		 
