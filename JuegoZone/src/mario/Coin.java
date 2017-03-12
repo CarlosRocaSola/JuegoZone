@@ -15,15 +15,16 @@ public class Coin extends WorldObject {
 	/* Permite que todos los objetos de esta misma clase
 	 * puedan pasar de una imagen a otra todos sincronizados.
 	 */
+	
 	protected static int indexClass = 0;
 	
 	/* Indica que es necesario actualizar el indexClass. */
 	protected static boolean changeImg = false;
 	
-	/* N˙mero de im·genes que representan al sprite. */
+	/* N√∫mero de im√°genes que representan al sprite. */
 	public static int LENGHT_IMAGES = 4;
 	
-	/* Permite actualizar las im·genes para todos los objetos
+	/* Permite actualizar las im√°genes para todos los objetos
 	 * de esa clase. */
 	public static void actClass() {
 		if (changeImg) {
@@ -32,7 +33,7 @@ public class Coin extends WorldObject {
 		}
 	}
 		
-	/*Cuenta el n˙mero de monedas que se han creado. */
+	/*Cuenta el n√∫mero de monedas que se han creado. */
 	public static int N_COINS = 0;
 	
 	/* Cuenta las monedas cogidas. */
@@ -42,7 +43,7 @@ public class Coin extends WorldObject {
 	
 	public String imgAnimation = "coinEfect*_0";
 	
-	// Indica si la moneda est· reproduciendo
+	// Indica si la moneda est√° reproduciendo
 	// el efecto que le va a hacer desaparecer.
 	public boolean effect = false;
 	
@@ -54,7 +55,7 @@ public class Coin extends WorldObject {
 		super(s);
 		setPreferredSize(map.tileXSize, map.tileYSize);
 		setImages(imgNormal, 0, LENGHT_IMAGES);
-		// Rect·ngulo para las colisiones
+		// Rect√°ngulo para las colisiones
 		bounds.add(new java.awt.Rectangle(
 			2, 2, width-4, height-4));
 		N_COINS++;
